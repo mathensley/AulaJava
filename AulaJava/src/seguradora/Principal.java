@@ -15,19 +15,35 @@ public class Principal {
 		Scanner in = new Scanner(System.in);
 		
 		while(x != 0){
-			System.out.println("-----MENU-----\n"
-					+ "\n1-Cadastrar Cliente"
-					+ "\n2-Cadastrar Contrato"
-					+ "\n3-Lista de Clientes"
-					+ "\n4-Lista de Contratos"
-					+ "\n0-Sair");
-			x = in.nextInt();
+			
+			try{
+		
+				System.out.println("-----MENU-----\n"
+						+ "\n1-Cadastrar Cliente"
+						+ "\n2-Cadastrar Contrato"
+						+ "\n3-Lista de Clientes"
+						+ "\n4-Lista de Contratos"
+						+ "\n0-Sair");
+				x = in.nextInt();
+				
+			}catch(Exception e){
+				x = 5;
+			}
+					
+			
 			switch(x){
 				case 1:
-					System.out.println("Pessoa Fisica ou Juridica:\n"
-							+ "\n1-Fisica"
-							+ "\n2-Juridica");
-					y = in.nextInt();
+					do{
+						try{
+							System.out.println("Pessoa Fisica ou Juridica:\n"
+									+ "\n1-Fisica"
+									+ "\n2-Juridica");
+							y = in.nextInt();
+						}catch(Exception e){
+							y = 0;
+						}
+						in.nextLine();
+					}while(y == 0);
 					if(y == 1){
 						System.out.println("Cadastrar Cliente\n"
 								+ "\nNome: ");
@@ -62,11 +78,18 @@ public class Principal {
 						lista.add(pessoaj);
 						break;
 					}
-				case 2:
-					System.out.println("Contrato Residencial ou Empresarial:\n"
-							+ "\n1-Residencial"
-							+ "\n2-Empresarial");
-					y = in.nextInt();
+				case 2:								
+					do{
+						try{
+							System.out.println("Contrato Residencial ou Empresarial:\n"
+									+ "\n1-Residencial"
+									+ "\n2-Empresarial");
+							y = in.nextInt();
+						}catch(Exception e){
+							y = 0;
+						}
+						in.nextLine();
+					}while(y == 0);
 					
 					if(y == 1){
 						System.out.println("Cadastro de Contrato\n"
@@ -146,6 +169,7 @@ public class Principal {
 					voltar = in.next();
 					voltar = "";
 				default:
+					in.nextLine();
 					break;
 			}
 		}
