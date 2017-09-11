@@ -16,11 +16,15 @@ public abstract class Personagem {
 		selec = random.nextInt(3);
 		
 		if(selec == 0)
-			System.out.println("Roger that!");
+			System.out.println("Roger that!\n");
 		else if(selec == 1)
-			System.out.println("Fire in the hoooole!");
+			System.out.println("Fire in the hoooole!\n");
 		else if(selec > 1)
-			System.out.println("The bomb has been planted...");
+			System.out.println("The bomb has been planted...\n");
+	}
+	
+	public void correr(){
+		System.out.println("Corre negadaaaa!\n");
 	}
 	
 	public void setArma(Arma a){
