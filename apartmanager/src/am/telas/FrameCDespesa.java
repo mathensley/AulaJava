@@ -3,6 +3,7 @@ package am.telas;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+//Frame para cadastro de despesas
 public class FrameCDespesa extends JFrame {
 	private static final long serialVersionUID = 1L;
 	

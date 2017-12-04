@@ -15,7 +15,7 @@ import am.main.Atividades;
 import am.main.Cadastro;
 import am.main.Despesas;
 
-//Classe utilizada para fazer/facilitar operacoes
+//Classe utilizada para fazer/facilitar operações
 public class Utils {
 	
 	//Conectar banco
@@ -34,7 +34,7 @@ public class Utils {
 	
 	//Cores
 	public static Color laranjaClaro = new Color(255, 102, 43);
-	public static Color laranjaEscuro = new Color(224, 123, 0);
+	//public static Color laranjaEscuro = new Color(224, 123, 0);
 	public static Color cinzaClaro = new Color(112, 112, 112);
 	public static Color branco = new Color(255, 255, 255);
 	public static Color preto = new Color(0, 0, 0);
@@ -43,12 +43,10 @@ public class Utils {
 	public static Font f1 = new Font("Segoe UI Semibold", Font.BOLD, 18);
 	public static Font f2 = new Font("Segoe UI Semibold", Font.BOLD, 26);
 	
-	//List
-	//public static List<?> lista;
 	
 	//Verifica se a string eh nula, vazia ou se tem espacos
 	public static boolean isVazia(String s){
-		return (s == null || s.equals("") || s.trim().equals(""));
+		return (s == null || s.equals("") || s.trim().equals("") || s.equals("  /  /    "));
 	}
 	//Sobrecarga para um array de chars
 	public static boolean isVazia(char[] c){
@@ -240,7 +238,7 @@ public class Utils {
 		return lista;
 	}
 	
-	//
+	//Retorna um array com todos os cadastro de sindicos
 	public static List<Cadastro> mostrarSindicos(Connection c){
 		List<Cadastro> lista = new ArrayList<Cadastro>();
 		Cadastro ca;

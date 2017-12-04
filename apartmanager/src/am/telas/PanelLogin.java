@@ -23,6 +23,7 @@ import javax.swing.SwingUtilities;
 import am.bd.Banco;
 import am.utils.Utils;
 
+//Panel do FrameLogin
 public class PanelLogin extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	
@@ -44,6 +45,7 @@ public class PanelLogin extends JPanel implements ActionListener {
 	public static String log;
 	public static String sind;
 	
+	
 	public PanelLogin(){
 		//Cor do background principal
 		setBackground(Utils.laranjaClaro);
@@ -58,7 +60,7 @@ public class PanelLogin extends JPanel implements ActionListener {
 		panel1.setLayout(null);
 		panel1.setVisible(true);
 		
-		//Botoes
+		//Botões
 		b1.setBounds(98, 184, 174, 52);
 		b1.setBackground(Utils.branco);
 		b2.setBounds(136, 250, 95, 20);
@@ -67,8 +69,6 @@ public class PanelLogin extends JPanel implements ActionListener {
 		panel1.add(b2);
 		b1.addActionListener(this);
 		b2.addActionListener(this);
-		
-		
 		
 		//Campo formularios
 		t1.setBounds(60, 50, 260, 30);
@@ -90,8 +90,7 @@ public class PanelLogin extends JPanel implements ActionListener {
 		panel1.add(login);
 		panel1.add(senha);
 		
-		
-		//
+		//Background para o botão
 		JPanel panel2 = new JPanel();
 		panel2.setBounds(95, 180, 180, 60);
 		panel2.setBackground(Utils.laranjaClaro);
@@ -106,6 +105,7 @@ public class PanelLogin extends JPanel implements ActionListener {
 		}
 	}
 
+	//Posiciona e escreve a imagem no panel
 	@Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -115,6 +115,7 @@ public class PanelLogin extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
+		//Validar login, senha e tipo 
 		if(e.getSource() == b1 || e.getSource() == t1 || e.getSource() == t2){
 			if(!Utils.isVazia(t1.getText()) && !Utils.isVazia(t2.getPassword())){
 				setLogin(t1.getText());

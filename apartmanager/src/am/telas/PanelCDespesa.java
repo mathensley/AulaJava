@@ -25,6 +25,7 @@ import am.bd.Banco;
 import am.main.Despesas;
 import am.utils.Utils;
 
+//Panel do FrameCDespesa
 public class PanelCDespesa extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	
@@ -95,7 +96,7 @@ public class PanelCDespesa extends JPanel implements ActionListener {
 		//Campo Formularios
 		t1.setBounds(330, 90, 200, 30);
 		t2.setBounds(330, 130, 200, 30);
-		//Formatar campo de valor 
+			//Formatar campo de valor 
 		format.setMaximumFractionDigits(0);
 		NumberFormatter formatter = new NumberFormatter(format);
 		formatter.setMinimum(1.0);
@@ -105,7 +106,7 @@ public class PanelCDespesa extends JPanel implements ActionListener {
 		field = new JFormattedTextField(formatter);
 		field.setValue(1.0);
 		field.setBounds(330, 170, 200, 30);
-		//Formatar campo de vencimento
+			//Formatar campo de vencimento
 		try {
 			tf = new JFormattedTextField(new MaskFormatter("##/##/####"));
 			tf.setBounds(330, 210, 200, 30);
@@ -151,6 +152,7 @@ public class PanelCDespesa extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
+		//Vaidação e cadastro de despesa de acordo com cpf do sindico
 		if(!Utils.isVazia(t1.getText()) && !Utils.isVazia(t2.getText()) && !Utils.isVazia(field.getText())
 				&& !Utils.isVazia(tf.getText())){
 			

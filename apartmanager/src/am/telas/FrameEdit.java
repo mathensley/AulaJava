@@ -3,6 +3,7 @@ package am.telas;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+//Frame para editar status
 public class FrameEdit extends JFrame {
 	private static final long serialVersionUID = 1L;
 	

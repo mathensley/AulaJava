@@ -14,6 +14,7 @@ import am.utils.Utils;
 
 public class Banco {
 	
+	//Função que cria e retorna a conexão com o banco
 	public static Connection conectarBanco(){
 		Connection c = null;
 		
@@ -29,6 +30,7 @@ public class Banco {
 	      return c; 
 	}
 	
+	//Validar se tabela existe no banco, se não cria ela
 	public static boolean isTable(Connection c, String table) throws SQLException{
 		boolean tExists = false;
 		
@@ -204,7 +206,7 @@ public class Banco {
 		return cpf;
 	}
 	
-	//
+	//Select que retorna o cpf de acordo com o id passado
 	public static String selectCpf(Connection c, String table, int id){
 		c = conectarBanco();
 		String cpf = null;
@@ -230,7 +232,6 @@ public class Banco {
 		
 		return cpf;
 	}
-	
 	
 	//Validar se existe algum sindico cadastrado
 	public static boolean isSindico(Connection c){
@@ -263,7 +264,7 @@ public class Banco {
 		return false;
 	}
 	
-	//Verifica se o id existe
+	//Validar se o id existe
 	public static boolean isId(Connection c, int id, String table){
 		c = conectarBanco();
 		
@@ -294,28 +295,7 @@ public class Banco {
 		return false;
 	}
 	
-	//
-	public static void update(Connection c, int id, String status) throws SQLException{
-		c = conectarBanco();
-		
-		c.setAutoCommit(false);
-		PreparedStatement stmt = null;
-			
-		//String sql = "update atividades set status = '" + status + "' where id = " + id;
-		stmt = c.prepareStatement("update atividades set status = ? where id = ?");
-		stmt.setString(1, status);
-		stmt.setInt(2, id);
-		stmt.executeUpdate();
-			
-		c.commit();
-			
-		System.out.println("Dado atualizado com sucesso!");
-		
-		stmt.close();
-		c.close();
-	}
-	
-	//Verifica se o cpf existe
+	//Validar se o cpf existe
 	public static boolean isCpf(Connection c, String cp, String table){
 		c = conectarBanco();
 		
@@ -346,7 +326,25 @@ public class Banco {
 		return false;
 	}
 	
-	
+	//Update para a tabela de atividades
+	public static void update(Connection c, int id, String status) throws SQLException{
+		c = conectarBanco();
+		
+		c.setAutoCommit(false);
+		PreparedStatement stmt = null;
+		
+		stmt = c.prepareStatement("update atividades set status = ? where id = ?");
+		stmt.setString(1, status);
+		stmt.setInt(2, id);
+		stmt.executeUpdate();
+			
+		c.commit();
+			
+		System.out.println("Dado atualizado com sucesso!");
+		
+		stmt.close();
+		c.close();
+	}
 	
 	//Delete
 	public static void delete(Connection c, String table, String nome1, String nome2) throws SQLException{
@@ -365,7 +363,7 @@ public class Banco {
         c.close();
 	}
 	
-	//Sobrecarga delete para inteiro
+	//Sobrecarga de delete para inteiro
 	public static void delete(Connection c, String table, String nome1, int nome2) throws SQLException{
 		c = conectarBanco();
 		c.setAutoCommit(false);
@@ -382,7 +380,7 @@ public class Banco {
         c.close();
 	}
 	
-	//select para testes
+	//Função de select feita para testes
 	public static void select(Connection c, String table) throws SQLException{
 		c = conectarBanco();
 		c.setAutoCommit(false);
@@ -428,4 +426,6 @@ public class Banco {
 			}
 		}
 	}
+	
+	
 }

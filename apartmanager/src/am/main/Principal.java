@@ -4,12 +4,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import am.bd.Banco;
-import am.telas.FrameApp;
-import am.telas.FrameCAtividade;
-import am.telas.FrameCDespesa;
-import am.telas.FrameCadastro;
-import am.telas.FrameDeletar;
-import am.telas.FrameEdit;
 import am.telas.FrameLogin;
 
 public class Principal {
@@ -17,6 +11,8 @@ public class Principal {
 	public static void main(String[] args) {
 		Connection c = null;
 		c = Banco.conectarBanco();
+		
+		//Verificar se todas as tabelas existem
 		try {
 			Banco.isTable(c, "cadastro");
 			c = Banco.conectarBanco();
@@ -27,7 +23,10 @@ public class Principal {
 			e.printStackTrace();
 		}
 		
+		//Abrir o sistema
 		new FrameLogin();
+		
+		
 		//new FrameCadastro();
 		//new FrameApp();
 		//new FrameCDespesa();

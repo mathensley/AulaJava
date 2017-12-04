@@ -23,6 +23,7 @@ import am.bd.Banco;
 import am.main.Atividades;
 import am.utils.Utils;
 
+//Panel do FrameCAtividade
 public class PanelCAtividade extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 1L;
 
@@ -45,6 +46,7 @@ public class PanelCAtividade extends JPanel implements ActionListener {
 	JComboBox cb;
 	
 	JButton b1 = new JButton("Cadastrar");
+	
 	
 	public PanelCAtividade(){
 		//Background principal
@@ -85,7 +87,7 @@ public class PanelCAtividade extends JPanel implements ActionListener {
 		
 		//Campo Formularios
 		t1.setBounds(330, 90, 200, 30);
-		//Formatar campo de data
+			//Formatar campo de data
 		try {
 			tf = new JFormattedTextField(new MaskFormatter("##/##/####"));
 			tf.setBounds(330, 130, 200, 30);
@@ -133,6 +135,7 @@ public class PanelCAtividade extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e){
 		
+		//Validação e cadastro de atvidade de acordo com o cpf do sindico 
 		if(!Utils.isVazia(t1.getText()) && !Utils.isVazia(tf.getText())){
 			boolean i = true;
 			

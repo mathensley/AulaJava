@@ -3,6 +3,7 @@ package am.telas;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+//Frame do login
 public class FrameLogin extends JFrame {
 	private static final long serialVersionUID = 1L;
 	

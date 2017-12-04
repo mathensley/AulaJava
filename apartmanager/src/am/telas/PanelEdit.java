@@ -17,6 +17,7 @@ import javax.swing.SwingUtilities;
 import am.bd.Banco;
 import am.utils.Utils;
 
+//Panel para a classe FrameEdit
 public class PanelEdit extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	
@@ -87,28 +88,40 @@ public class PanelEdit extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
+		//Validar se o valor digitado esta ligado ao sindico logado no momento
 		if(!Utils.isVazia(t1.getText())){
 			String id = t1.getText();
 			int id1;
 			
 			try{
 				id1 = Integer.parseInt(id);
+				
+				try {
+					if(Banco.isId(c, id1, "atividades")){
+						String cpf = Banco.selectCpf(c, "atividades", id1);
+						if(cpf.equals(PanelLogin.sind))
+							Banco.update(c, id1, (String) cb.getItemAt(cb.getSelectedIndex()));
+						else{
+							t1.setText("");
+							JOptionPane.showMessageDialog(p, "Digite um valor de acordo com o síndico logado!");
+							return;
+						}
+					}
+					else{
+						t1.setText("");
+						JOptionPane.showMessageDialog(p, "Valor não existe");
+						return;
+					}
+				} catch (SQLException e1) {
+					JOptionPane.showMessageDialog(p, "Digite um valor válido!");
+					t1.setText("");
+					return;
+				}
+				
 			} catch (NumberFormatException e2) {
 				JOptionPane.showMessageDialog(p, "Digite um valor válido!");
 				t1.setText("");
 				return;
-			}
-			
-			try {
-				if(Banco.isId(c, id1, "atividades"))
-					Banco.update(c, id1, (String) cb.getItemAt(cb.getSelectedIndex()));
-				else{
-					t1.setText("");
-					JOptionPane.showMessageDialog(p, "Valor não existe");
-					return;
-				}
-			} catch (SQLException e1) {
-				e1.printStackTrace();
 			}
 			
 			JOptionPane.showMessageDialog(p, "Atualizado com sucesso!");

@@ -16,6 +16,7 @@ import javax.swing.SwingUtilities;
 import am.bd.Banco;
 import am.utils.Utils;
 
+//Panel para a classe FrameDelete
 public class PanelDeletar extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 1L;
 
@@ -30,7 +31,7 @@ public class PanelDeletar extends JPanel implements ActionListener {
 	
 	JTextField t1 = new JTextField();
 	
-	JButton b1 = new JButton("Remover");
+	JButton b1 = new JButton("Deletar");
 	
 	
 	public PanelDeletar(String h1, String h2, String tab, String col, boolean str){
@@ -82,10 +83,12 @@ public class PanelDeletar extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
+		//Validar se o valor digitado esta ligado ao sindico logado no momento
 		if(!Utils.isVazia(t1.getText())){
 			String id = t1.getText();
 			int id1;
 			
+			//Verifica se o valor passado no construtor foi uma string ou um inteiro
 			if(!string){
 				try{
 					id1 = Integer.parseInt(id);
@@ -137,7 +140,6 @@ public class PanelDeletar extends JPanel implements ActionListener {
 				} catch (SQLException e1) {
 					JOptionPane.showMessageDialog(p, "Digite um valor válido!");
 					t1.setText("");
-					//e1.printStackTrace();
 					return;
 				}
 				

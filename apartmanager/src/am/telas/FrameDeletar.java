@@ -3,6 +3,7 @@ package am.telas;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+//Frame para deletar
 public class FrameDeletar extends JFrame {
 	private static final long serialVersionUID = 1L;
 
@@ -11,7 +12,6 @@ public class FrameDeletar extends JFrame {
 	private static String tab = "despesas";
 	private static String col = "id";
 	
-	//public static PanelDeletar panelDel = new PanelDeletar();
 	
 	//Construtor padrão para tabela despesas e coluna id
 	public FrameDeletar(){

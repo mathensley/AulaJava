@@ -3,12 +3,12 @@ package am.telas;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+//Frame para cadastro de condominos e sindicos
 public class FrameCadastro extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	private static String tipos[] = {"Síndico", "Condômino"};
 	
-	//public static PanelCadastro panelC = new PanelCadastro(tipos);
 	
 	//Construtor padrão para cadastro com opção de sindico e condomino
 	public FrameCadastro(){

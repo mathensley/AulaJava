@@ -1,19 +1,11 @@
 package am.telas;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import javax.imageio.ImageIO;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -29,10 +21,9 @@ import am.bd.Banco;
 import am.main.Cadastro;
 import am.utils.Utils;
 
+//Panel do FrameCadastro
 public class PanelCadastro extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 1L;
-	
-	//String tipos[] = {"Síndico", "Condômino"};
 	
 	Connection con = null;
 	
@@ -232,18 +223,6 @@ public class PanelCadastro extends JPanel implements ActionListener {
 		}
 		else{
 			JOptionPane.showMessageDialog(p, "Digite os dados corretos!");
-			try {
-				Banco.select(con, "cadastro");
-				
-				try {
-					Banco.delete(con, "cadastro", "cpf", "07081678934");
-				} catch (SQLException e2) {
-					e2.printStackTrace();
-				}
-				
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
 		}
 	}
 
