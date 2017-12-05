@@ -18,6 +18,9 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.UIManager;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 import am.main.Atividades;
 import am.main.Cadastro;
 import am.main.Despesas;
@@ -33,6 +36,8 @@ public class FrameApp extends JFrame implements ActionListener {
 	Connection c;
 	
 	JTabbedPane tabbed;
+	
+	private static int selectedIndex = 0;
 	
 	
 	public FrameApp(){
@@ -52,7 +57,14 @@ public class FrameApp extends JFrame implements ActionListener {
 		UIManager.put("TabbedPane.focus", Utils.laranjaClaro);
 		
 		
-		tabbed = createTabbed();
+		tabbed = createTabbed(selectedIndex);
+		
+		//Listener que pega o indice da aba clicada
+		tabbed.addChangeListener(new ChangeListener() {
+	        public void stateChanged(ChangeEvent e) {
+	        	selectedIndex = tabbed.getSelectedIndex();
+	        }
+	    });
 		
 		add(tabbed);
 		    
@@ -60,7 +72,7 @@ public class FrameApp extends JFrame implements ActionListener {
 	}
 
 	//Criar o jtabbedpane
-	public JTabbedPane createTabbed(){
+	public JTabbedPane createTabbed(int index){
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		
 		tabbedPane.setPreferredSize(new Dimension(800, 600));
@@ -76,6 +88,8 @@ public class FrameApp extends JFrame implements ActionListener {
         tabbedPane.addTab("Resumo", null, panel2);
         tabbedPane.addTab("Gerenciar", null, panel3);
         tabbedPane.addTab("Opções", null, panel5);
+        
+        tabbedPane.setSelectedIndex(index);
         
         return tabbedPane;
 	}
@@ -273,7 +287,7 @@ public class FrameApp extends JFrame implements ActionListener {
 		return panel;
 	}
 	
-	//Aba de configurações
+	//Aba de opções
 	private JPanel createPane5(){
 		JPanel panel = criarBase("Configurações", 310);
 		
@@ -309,7 +323,7 @@ public class FrameApp extends JFrame implements ActionListener {
 		listS.setBackground(Utils.laranjaClaro);
 		listS.setForeground(Utils.branco);
 		listS.setFont(Utils.f1);
-		listS.setBounds(270, 220, 260, 50);
+		listS.setBounds(270, 230, 260, 50);
 		listS.addActionListener(this);
 		panel.add(listS);
 		
@@ -329,6 +343,7 @@ public class FrameApp extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		
 		if(e.getSource() == b1){
+			selectedIndex = 0;
 			new FrameLogin();
 			this.dispose();
 		}

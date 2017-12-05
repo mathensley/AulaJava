@@ -11,6 +11,7 @@ import java.util.Locale;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -32,6 +33,8 @@ public class PanelCDespesa extends JPanel implements ActionListener {
 	Connection con = null;
 	Despesas d;
 	
+	String tipos[] = {"Mensal", "Semanal", "Diária"};
+	
 	public static int ID = 0;
 	
 	NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
@@ -45,9 +48,9 @@ public class PanelCDespesa extends JPanel implements ActionListener {
 	JLabel vencimento = new JLabel("Vencimento:");
 	
 	JTextField t1 = new JTextField();
-	JTextField t2 = new JTextField();
 	JFormattedTextField field = new JFormattedTextField();
 	JFormattedTextField tf = new JFormattedTextField();
+	JComboBox cb;
 	
 	JButton b1 = new JButton("Cadastrar");
 	
@@ -95,7 +98,9 @@ public class PanelCDespesa extends JPanel implements ActionListener {
 		
 		//Campo Formularios
 		t1.setBounds(330, 90, 200, 30);
-		t2.setBounds(330, 130, 200, 30);
+		cb = new JComboBox(tipos);
+		cb.setBackground(Utils.branco);
+		cb.setBounds(330, 130, 200, 30);
 			//Formatar campo de valor 
 		format.setMaximumFractionDigits(0);
 		NumberFormatter formatter = new NumberFormatter(format);
@@ -115,7 +120,7 @@ public class PanelCDespesa extends JPanel implements ActionListener {
 		}
 		
 		add(t1);
-		add(t2);
+		add(cb);
 		add(field);
 		add(tf);
 		
@@ -153,7 +158,7 @@ public class PanelCDespesa extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		
 		//Vaidação e cadastro de despesa de acordo com cpf do sindico
-		if(!Utils.isVazia(t1.getText()) && !Utils.isVazia(t2.getText()) && !Utils.isVazia(field.getText())
+		if(!Utils.isVazia(t1.getText()) && !Utils.isVazia(field.getText())
 				&& !Utils.isVazia(tf.getText())){
 			
 			boolean i = true;
@@ -161,7 +166,7 @@ public class PanelCDespesa extends JPanel implements ActionListener {
 			d = new Despesas();
 			
 			d.setNome(t1.getText());
-			d.setFrequencia(t2.getText());
+			d.setFrequencia((String) cb.getItemAt(cb.getSelectedIndex()));
 			d.setValor(field.getText());
 			d.setVencimento(tf.getText());			
 			d.setCpf(Banco.selectSindico(con, PanelLogin.log));
@@ -177,16 +182,9 @@ public class PanelCDespesa extends JPanel implements ActionListener {
 				}
 			}while(i);
 			
-			try {
-				Banco.select(con, "despesas");
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
-			
 			JOptionPane.showMessageDialog(p, "Despesa Cadastrada!");
 			
 			t1.setText("");
-			t2.setText("");
 			field.setValue(1.0);
 			tf.setText("");
 			
