@@ -104,20 +104,20 @@ public class Banco {
 		
 		if(table.equals("cadastro") && obj instanceof Cadastro){
 			Cadastro i = (Cadastro) obj;
-				stmt = c.prepareStatement(Utils.cadastro);
-				stmt.setString(1, i.getNome());
-				stmt.setString(2, i.getEmail());
-				stmt.setString(3, i.getCpf());
-				stmt.setString(4, i.getFone());
-				stmt.setString(5, i.getSenha());
-				stmt.setString(6, i.getApto());
-				stmt.setString(7, i.getTipo());
-				stmt.executeUpdate();
-		        c.commit();
+			stmt = c.prepareStatement(Utils.cadastro);
+			stmt.setString(1, i.getNome());
+			stmt.setString(2, i.getEmail());
+			stmt.setString(3, i.getCpf());
+			stmt.setString(4, i.getFone());
+			stmt.setString(5, i.getSenha());
+			stmt.setString(6, i.getApto());
+			stmt.setString(7, i.getTipo());
+			stmt.executeUpdate();
+		    c.commit();
 		        
-		        stmt.close();
-		        c.close();
-		        System.out.println("Dados salvos no banco com sucesso!");
+		    stmt.close();
+		    c.close();
+		    System.out.println("Dados salvos no banco com sucesso!");
 		}
 		
 		else if(table.equals("despesas") && obj instanceof Despesas){
